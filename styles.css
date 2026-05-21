@@ -452,6 +452,45 @@ h3 {
   transform: scale(1.02);
 }
 
+.brand-collage {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+
+.brand-preview {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  min-height: 180px;
+  background: var(--paper-strong);
+}
+
+.project-card.featured .brand-preview {
+  min-height: 180px;
+}
+
+.brand-preview img {
+  min-height: 180px;
+}
+
+.brand-preview span {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  border-radius: 999px;
+  background: rgba(23, 24, 20, 0.72);
+  color: white;
+  font-size: 12px;
+  font-weight: 850;
+}
+
 .project-body {
   padding: clamp(24px, 3vw, 34px);
 }
@@ -502,6 +541,13 @@ h3 {
 
 .text-link.muted {
   color: var(--sage);
+}
+
+.brand-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-top: 4px;
 }
 
 .ecosystem {
