@@ -24,7 +24,7 @@
 <meta name="twitter:image" content="https://thekahome.com/assets/og.jpg">
 
 <!-- HEAD-COMMON START -->
-<meta name="theme-color" content="#F3F5F8">
+<meta name="theme-color" content="#F7F8FC">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-512.png">
@@ -35,7 +35,10 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- web font: loaded without blocking first paint, so a slow or unreachable font host never holds the page back -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"></noscript>
 <link rel="stylesheet" href="styles.css">
 <script src="script.js" defer onerror="var d=document.documentElement;d.classList.remove('js','lang-pending','lang-zh');d.lang='en'"></script>
 <!-- HEAD-COMMON END -->
@@ -99,47 +102,65 @@
 <body>
 
 <!-- HEADER START -->
-<a class="skip-link" href="#main" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
+<a class="skip" href="#main" data-en="Skip to main content" data-zh="跳到主要内容">Skip to main content</a>
 
 <!-- icon sprite (self-drawn) — keep it with the header so every page has the icons -->
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="#C3AFF1" stroke="#C3AFF1" stroke-width="1.8" stroke-linejoin="round"/></symbol>
-  <symbol id="i-star-deep" viewBox="0 0 24 24"><path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="#A58BE6" stroke="#A58BE6" stroke-width="1.8" stroke-linejoin="round"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M2.5 8h10M8.5 3.5L13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-out" viewBox="0 0 16 16"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-loop" viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.5v2.4h-2.4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7zM14 3v4h4M9.5 14.5l2 2 3.5-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <defs><linearGradient id="g-star" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E4D9FC"/><stop offset=".48" stop-color="#B49BF1"/><stop offset="1" stop-color="#84ACE9"/></linearGradient></defs>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star-grad" viewBox="0 0 24 24"><path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="url(#g-star)" stroke="url(#g-star)" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M2.5 8h10M8.5 3.5L13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-out" viewBox="0 0 16 16"><path d="M5 11L11.5 4.5M6 4.5h5.5V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3.2 8.6l3.1 3 6.5-7.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.3"/></g></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.8 12.2L20 3M16.5 6.5l3 3M13.8 9.2l2.4 2.4"/></g></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-13.7 5.7M4 12a8 8 0 0 1 13.7-5.7M17.6 2.6v3.8h-3.8M6.4 21.4v-3.8h3.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8.5 7l-5 5 5 5M15.5 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M4 20h16M7 16v-3M12 16V9M17 16V5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10.5L5.5 20v-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9.5" rx="2.6"/><path d="M8.2 11V8a3.8 3.8 0 0 1 7.6 0v3"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
+  <symbol id="i-seat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.2 19c.6-3 2.9-4.6 5.8-4.6s5.2 1.6 5.8 4.6M16 5.6a3.2 3.2 0 0 1 0 5.8M17.6 14.8c1.7.6 2.8 2 3.2 4.2"/></g></symbol>
+  <symbol id="i-plan" viewBox="0 0 24 24"><path d="M12 4l8 4-8 4-8-4zM4 12l8 4 8-4M4 16l8 4 8-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4.5 8.5h14.5M15.5 5L19 8.5 15.5 12M19.5 15.5H5M8.5 12L5 15.5 8.5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3.5h7l4 4v13H7zM14 3.5v4h4M9.8 12.5h4.6M9.8 16h4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.6"/><path d="M4.5 7.5l7.5 6 7.5-6"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.3 2"/></g></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.4 4 5.6 4 9s-1.4 6.6-4 9c-2.6-2.4-4-5.6-4-9s1.4-6.6 4-9z"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 2.8v5.4c0 4.6-3 8.1-7.5 9.8-4.5-1.7-7.5-5.2-7.5-9.8V5.8zM8.8 12l2.3 2.3 4.2-4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="7.5" width="17" height="12" rx="2.6"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7M6.5 9.5V20h11V9.5M10 20v-5.5h4V20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5l5 5"/></g></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M12 6.5c-2-1.6-4.6-2-8-2v13c3.4 0 6 .4 8 2 2-1.6 4.6-2 8-2v-13c-3.4 0-6 .4-8 2zM12 6.5v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
-<header class="site-header" id="site-header">
-  <div class="wrap header-bar">
+<header class="hdr" id="site-header">
+  <div class="hdr-bar">
     <a class="brand" href="/">
-      <img src="assets/brand/logo.png" width="814" height="252" alt="K&amp;A, AI services by Kahome Inc — home" data-alt-en="K&amp;A, AI services by Kahome Inc — home" data-alt-zh="K&amp;A · Kahome Inc 旗下 AI 服务（返回首页）" loading="eager" decoding="async" fetchpriority="high">
+      <img src="assets/brand/logo.png" width="407" height="126" alt="K&amp;A, AI services by Kahome Inc — home" data-alt-en="K&amp;A, AI services by Kahome Inc — home" data-alt-zh="K&amp;A · Kahome Inc 旗下 AI 服务（返回首页）" loading="eager" decoding="async" fetchpriority="high">
     </a>
-
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
-      <span class="nav-toggle-icon" aria-hidden="true"></span>
-      <span class="vh when-closed" data-en="Open menu" data-zh="打开菜单">Open menu</span>
-      <span class="vh when-open" data-en="Close menu" data-zh="关闭菜单">Close menu</span>
-    </button>
-
-    <nav class="site-nav" id="site-nav" aria-label="Primary" data-arialabel-en="Primary" data-arialabel-zh="主导航">
+    <nav class="nav" id="site-nav" aria-label="Primary" data-arialabel-en="Primary" data-arialabel-zh="主导航">
       <ul>
-        <li><a href="/#services"><span data-en="Services" data-zh="服务">Services</span></a></li>
-        <li><a href="/#how"><span data-en="How it works" data-zh="合作流程">How it works</span></a></li>
-        <li><a href="/#why"><span data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</span></a></li>
-        <li><a href="/#careers"><span data-en="Careers" data-zh="加入我们">Careers</span></a></li>
-        <li><a href="/#contact"><span data-en="Contact" data-zh="联系我们">Contact</span></a></li>
+        <li><a class="lnk" href="/#services" data-en="Services" data-zh="服务">Services</a></li>
+        <li><a class="lnk" href="/#how" data-en="How it works" data-zh="合作流程">How it works</a></li>
+        <li><a class="lnk" href="/#why" data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</a></li>
+        <li><a class="lnk" href="/#careers" data-en="Careers" data-zh="加入我们">Careers</a></li>
+        <li><a class="lnk" href="/#contact" data-en="Contact" data-zh="联系我们">Contact</a></li>
       </ul>
-      <a class="btn btn-primary nav-cta" href="/#contact"><span data-en="Talk to us" data-zh="聊聊你的需求">Talk to us</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-dark nav-cta" href="/#contact"><span data-en="Talk to us" data-zh="聊聊你的需求">Talk to us</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
     </nav>
-
-    <div class="header-tools">
-      <div class="lang-switch" role="group" aria-label="Language" data-arialabel-en="Language" data-arialabel-zh="语言">
+    <div class="hdr-tools">
+      <div class="lang lang-switch" role="group" aria-label="Language" data-arialabel-en="Language" data-arialabel-zh="语言">
         <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
         <button type="button" data-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button>
       </div>
-      <a class="btn btn-primary btn-sm header-cta" href="/#contact" data-en="Talk to us" data-zh="聊聊需求">Talk to us</a>
+      <a class="btn btn-dark btn-sm hdr-cta" href="/#contact" data-en="Talk to us" data-zh="聊聊需求">Talk to us</a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+        <span class="vh when-closed" data-en="Open menu" data-zh="打开菜单">Open menu</span>
+        <span class="vh when-open" data-en="Close menu" data-zh="关闭菜单">Close menu</span>
+      </button>
     </div>
   </div>
 </header>
@@ -148,531 +169,362 @@
 <main id="main">
 
   <!-- ===== Hero ===== -->
-  <section class="section hero" aria-labelledby="hero-h">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="mesh" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
-            <span class="mono" data-en="AI services" data-zh="AI 服务">AI services</span>
-            <span class="mono" aria-hidden="true">/</span>
-            <span class="mono">Kahome Inc</span>
-            <span class="mono" aria-hidden="true">/</span>
-            <span class="mono" data-en="Irvine, California" data-zh="美国加州尔湾">Irvine, California</span>
+          <svg class="h1-stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="url(#g-star)" stroke="url(#g-star)" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <p class="eyebrow eyebrow--wrap">
+            <svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+            <span data-en="AI services" data-zh="AI 服务">AI services</span>
+            <span aria-hidden="true">·</span>
+            <span>Kahome Inc</span>
+            <span class="sep2" aria-hidden="true">·</span>
+            <span class="br" data-en="Irvine, California" data-zh="美国加州尔湾">Irvine, California</span>
           </p>
-          <h1 class="hero-title" id="hero-h">
-            <span class="l" data-en="Get AI in." data-zh="AI 接得上，">Get AI in.</span>
-            <span class="l" data-en="Keep it running." data-zh="用得稳，">Keep it running.</span>
-            <span class="l accent" data-en="Put it to work." data-zh="落得了地。">Put it to work.</span>
+          <h1 class="h1" id="hero-h">
+            <span data-en="Get AI in." data-zh="AI 接得上，">Get AI in.</span>
+            <span data-en="Keep it running." data-zh="用得稳，">Keep it running.</span>
+            <span class="acc" data-en="Put it to work." data-zh="落得了地。">Put it to work.</span>
           </h1>
-          <p class="hero-lede" data-en="K&amp;A is the AI services brand of Kahome Inc, a technology services company in Irvine, California. We get your developers working with leading AI models and APIs, provide and run the AI, cloud and SaaS accounts your team uses, and put agents and automation into production." data-zh="K&amp;A 是 Kahome Inc 旗下的 AI 服务品牌。Kahome Inc 是一家位于美国加州尔湾的科技服务公司。我们帮你的开发者用上主流 AI 模型与 API，为你的团队提供 AI、云与 SaaS 账号并负责日常运营，也帮你把智能体和自动化正式上线运行。">K&amp;A is the AI services brand of Kahome Inc, a technology services company in Irvine, California. We get your developers working with leading AI models and APIs, provide and run the AI, cloud and SaaS accounts your team uses, and put agents and automation into production.</p>
+          <p class="lede" data-en="K&amp;A is the AI services brand of Kahome&nbsp;Inc, a technology services company in Irvine, California. We get your developers working with leading AI models and APIs, provide and run the AI, cloud and SaaS accounts your team uses, and put agents and automation into production." data-zh="K&amp;A 是 Kahome Inc 旗下的 AI 服务品牌。Kahome Inc 是一家位于美国加州尔湾的科技服务公司。我们帮你的开发者用上主流 AI 模型与 API，为你的团队提供 AI、云与 SaaS 账号并负责日常运营，也帮你把智能体和自动化正式上线运行。">K&amp;A is the AI services brand of Kahome&nbsp;Inc, a technology services company in Irvine, California. We get your developers working with leading AI models and APIs, provide and run the AI, cloud and SaaS accounts your team uses, and put agents and automation into production.</p>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="/#contact"><span data-en="Talk to us" data-zh="聊聊你的需求">Talk to us</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-            <a class="btn btn-ghost" href="/#services" data-en="See the three services" data-zh="看看三条服务线">See the three services</a>
+            <a class="btn btn-dark" href="/#contact"><span data-en="Talk to us" data-zh="聊聊你的需求">Talk to us</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-light" href="/#services" data-en="See the three services" data-zh="看看三条服务线">See the three services</a>
           </div>
           <p class="hero-note">
-            <svg aria-hidden="true" focusable="false"><use href="#i-star-deep"/></svg>
-            <span data-en="K&amp;A is a brand of Kahome Inc — a US company with its office at 400 Spectrum Center Dr, Ste 1900, Irvine, CA 92618." data-zh="K&amp;A 是 Kahome Inc 旗下品牌。Kahome Inc 是一家美国公司，办公地址：400 Spectrum Center Dr, Ste 1900, Irvine, CA 92618。">K&amp;A is a brand of Kahome Inc — a US company with its office at 400 Spectrum Center Dr, Ste 1900, Irvine, CA 92618.</span>
+            <svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+            <span data-html-en='K&amp;A is a brand of Kahome Inc — a US company with its office at <span class="nb">400 Spectrum Center Dr,</span> <span class="nb">Ste 1900,</span> <span class="nb">Irvine, CA 92618.</span>' data-html-zh='K&amp;A 是 Kahome Inc 旗下品牌。Kahome Inc 是一家美国公司，办公地址：<span class="nb">400 Spectrum Center Dr,</span> <span class="nb">Ste 1900,</span> <span class="nb">Irvine, CA 92618。</span>'>K&amp;A is a brand of Kahome Inc — a US company with its office at <span class="nb">400 Spectrum Center Dr,</span> <span class="nb">Ste 1900,</span> <span class="nb">Irvine, CA 92618.</span></span>
           </p>
         </div>
 
-        <aside class="panel hero-panel" aria-label="Company summary" data-arialabel-en="Company summary" data-arialabel-zh="公司概要" data-reveal>
-          <figure class="fig">
-            <div class="fig-stage">
-              <svg viewBox="0 0 400 400" aria-hidden="true" focusable="false">
-                <defs>
-                  <pattern id="ka-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path class="c-grid" d="M20 0H0V20" fill="none"/>
-                  </pattern>
-                </defs>
-                <rect width="400" height="400" fill="url(#ka-grid)"/>
-                <path class="c-line c-dash" d="M0 200H400M200 0V400"/>
-                <circle class="c-blue c-dash c-spin" cx="200" cy="200" r="160"/>
-                <circle class="c-line" cx="200" cy="200" r="104"/>
-                <circle class="c-line" cx="200" cy="200" r="52"/>
-                <path class="c-line" d="M200 200L200 22M200 200L369.3 145M200 200L304.6 344M200 200L95.4 344M200 200L30.7 145"/>
-                <path class="c-blue" d="M200 40L352.2 150.6L294 329.4L106 329.4L47.8 150.6Z"/>
-                <path class="c-blue" d="M200 82A118 118 0 0 1 312.2 163.5"/>
-                <circle class="c-node" cx="352.2" cy="150.6" r="4"/>
-                <circle class="c-node" cx="47.8" cy="150.6" r="4"/>
-                <circle class="c-halo" cx="200" cy="40" r="10"/>
-                <circle class="c-halo" cx="294" cy="329.4" r="10"/>
-                <circle class="c-halo" cx="106" cy="329.4" r="10"/>
-                <circle class="c-hot" cx="200" cy="40" r="5"/>
-                <circle class="c-hot" cx="294" cy="329.4" r="5"/>
-                <circle class="c-hot" cx="106" cy="329.4" r="5"/>
-                <text class="c-txt" x="282" y="82">72°</text>
-                <text class="c-txt" x="388" y="20" text-anchor="end">K&amp;A / 01</text>
-              </svg>
-              <img src="assets/brand/star.png" width="256" height="256" alt="" loading="eager" decoding="async">
-              <a class="fig-node fig-node--a" href="/#service-access"><b>S/02</b><span data-en="Access" data-zh="接入">Access</span></a>
-              <a class="fig-node fig-node--b" href="/#service-operations"><b>S/01</b><span data-en="Operate" data-zh="运营">Operate</span></a>
-              <a class="fig-node fig-node--c" href="/#service-implementation"><b>S/03</b><span data-en="Build" data-zh="落地">Build</span></a>
+        <div class="hv" id="hv">
+          <div class="hv-plate" aria-hidden="true">
+            <svg class="hv-star" viewBox="0 0 24 24" focusable="false">
+              <path d="M12 3.1l2.88 5.54 6.15 1.02-4.37 4.45.92 6.18L12 17.5l-5.58 2.79.92-6.18-4.37-4.45 6.15-1.02z" fill="url(#g-star)" stroke="url(#g-star)" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <svg class="stk stk--1" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <svg class="stk stk--2" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <svg class="stk stk--3" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <a class="hv-chip hv-chip--a" href="/#service-access"><span class="ico ico--blue"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-key"/></svg></span><span><b data-en="Access" data-zh="接入">Access</b><small data-en="AI Model &amp; API Access" data-zh="AI 模型与 API 接入">AI Model &amp; API Access</small></span></a>
+          <a class="hv-chip hv-chip--b" href="/#service-operations"><span class="ico ico--lav"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-loop"/></svg></span><span><b data-en="Operate" data-zh="运营">Operate</b><small data-en="AI &amp; Cloud Account Operations" data-zh="AI 与云账号运营">AI &amp; Cloud Account Operations</small></span></a>
+          <a class="hv-chip hv-chip--c" href="/#service-implementation"><span class="ico ico--peach"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-code"/></svg></span><span><b data-en="Build" data-zh="落地">Build</b><small data-en="Enterprise AI Implementation" data-zh="企业 AI 落地">Enterprise AI Implementation</small></span></a>
+        </div>
+      </div>
+
+      <h2 class="vh" id="glance-h" data-en="K&amp;A at a glance" data-zh="K&amp;A 概览">K&amp;A at a glance</h2>
+      <ul class="glance" aria-labelledby="glance-h">
+        <li><b data-en="3 service lines" data-zh="三条服务线">3 service lines</b><span data-en="Account operations, model and API access, implementation." data-zh="账号运营、模型与 API 接入、AI 落地。">Account operations, model and API access, implementation.</span></li>
+        <li><b>EN / <span lang="zh-Hans">中文</span></b><span data-en="Bilingual support in English and Mandarin." data-zh="中英双语支持，中文、英文都可以直接沟通。">Bilingual support in English and Mandarin.</span></li>
+        <li><b data-en="Irvine, CA" data-zh="加州尔湾">Irvine, CA</b><span data-en="A US-based team working from an office in Irvine, California." data-zh="团队在美国本土，办公地点在加州尔湾。">A US-based team working from an office in Irvine, California.</span></li>
+        <li><b data-en="SOPs + routine QC" data-zh="SOP + 例行质检">SOPs + routine QC</b><span data-en="Documented procedures with routine quality-control checks." data-zh="按书面流程执行，例行质检。">Documented procedures with routine quality-control checks.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="sec" id="services" aria-labelledby="services-h">
+    <div class="wrap">
+      <header class="sec-head sec-head--split" data-rv>
+        <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Services" data-zh="服务">Services</span></p>
+        <h2 class="h2" id="services-h" data-html-en='<span class="ln">Three service lines.</span> <span class="ln">One accountable team.</span>' data-html-zh='<span class="nb">三条服务线，</span><span class="nb">一个团队负责。</span>'><span class="ln">Three service lines.</span> <span class="ln">One accountable team.</span></h2>
+        <p class="lede" data-en="Each line stands on its own. Together they cover the whole path, from the first account to AI running in production." data-zh="每条服务线都可以单独选用；合在一起，从第一个账号到 AI 正式上线运行，全程都有人管。">Each line stands on its own. Together they cover the whole path, from the first account to AI running in production.</p>
+      </header>
+
+      <div class="bento">
+        <!-- S/01 -->
+        <article class="card spot sv sv--wide s12" id="service-operations" aria-labelledby="s1-h" data-rv>
+          <div class="sv-copy">
+            <p class="tag"><b>01</b><span data-en="Operate" data-zh="运营">Operate</span></p>
+            <h3 class="h3" id="s1-h" data-en="AI &amp; Cloud Account Operations" data-zh="AI 与云账号运营">AI &amp; Cloud Account Operations</h3>
+            <p class="sv-sum" data-en="We provide and run the AI, cloud and SaaS accounts your team depends on&nbsp;— so seats, plans and renewals stop being somebody’s side job." data-zh="你的团队要用的 AI、云与 SaaS 账号由我们提供，创建、配置和日常管理也由我们负责。席位、套餐、续费，不再是谁顺手兼着的杂事。">We provide and run the AI, cloud and SaaS accounts your team depends on&nbsp;— so seats, plans and renewals stop being somebody’s side job.</p>
+          </div>
+          <figure class="vg vg-ops">
+            <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+            <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+            <ol class="cyc" aria-label="Account lifecycle" data-arialabel-en="Account lifecycle" data-arialabel-zh="账号生命周期">
+              <li><b aria-hidden="true">1</b><span data-en="Set up" data-zh="创建">Set up</span></li>
+              <li><b aria-hidden="true">2</b><span data-en="Provision" data-zh="开通">Provision</span></li>
+              <li><b aria-hidden="true">3</b><span data-en="Manage" data-zh="管理">Manage</span></li>
+              <li><b aria-hidden="true">4</b><span data-en="Renew" data-zh="续费">Renew</span></li>
+              <li><b aria-hidden="true">5</b><span data-en="Monitor" data-zh="监控">Monitor</span></li>
+            </ol>
+            <div class="win" aria-hidden="true">
+              <div class="win-bar"><i></i><i></i><i></i></div>
+              <div class="win-row"><span class="ico ico--lav"><svg class="i" focusable="false"><use href="#i-seat"/></svg></span><span class="lbl" data-en="Seats" data-zh="席位">Seats</span><span class="w seats"><i></i><i></i><i></i><i></i><i></i></span></div>
+              <div class="win-row"><span class="ico ico--blue"><svg class="i" focusable="false"><use href="#i-plan"/></svg></span><span class="lbl" data-en="Plan" data-zh="套餐">Plan</span><span class="w seg"><i class="on"></i><i class="on"></i><i></i></span></div>
+              <div class="win-row"><span class="ico ico--peach"><svg class="i" focusable="false"><use href="#i-loop"/></svg></span><span class="lbl" data-en="Renewal" data-zh="续费">Renewal</span><span class="w"><span class="tog"></span></span></div>
             </div>
-            <figcaption class="fig-cap dg-cap mono"><span data-en="Fig. 01 — One star, three service lines" data-zh="图 01 · 一颗星，三条服务线">Fig. 01 — One star, three service lines</span><span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span></figcaption>
+            <p class="vg-float"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Billing and order records are kept up to date along the way." data-zh="账单与订单记录，一路同步更新。">Billing and order records are kept up to date along the way.</span></p>
           </figure>
-          <dl class="meta-table">
-            <div><dt class="mono" data-en="Company" data-zh="公司">Company</dt><dd data-en="Kahome Inc — brand: K&amp;A" data-zh="Kahome Inc（品牌：K&amp;A）">Kahome Inc — brand: K&amp;A</dd></div>
-            <div><dt class="mono" data-en="Business" data-zh="业务">Business</dt><dd data-en="AI services (technology services)" data-zh="AI 服务（科技服务）">AI services (technology services)</dd></div>
-            <div><dt class="mono" data-en="Office" data-zh="办公地址">Office</dt><dd><span data-en="400 Spectrum Center Dr, Ste 1900" data-zh="400 Spectrum Center Dr, Ste 1900">400 Spectrum Center Dr, Ste 1900</span><br><span data-en="Irvine, CA 92618, USA" data-zh="Irvine, CA 92618, USA（美国加州尔湾）">Irvine, CA 92618, USA</span></dd></div>
-            <div><dt class="mono" data-en="Languages" data-zh="语言">Languages</dt><dd>English · 中文</dd></div>
-            <div><dt class="mono" data-en="Method" data-zh="方法">Method</dt><dd data-en="SOPs with routine QC checks" data-zh="按 SOP 执行，例行质检">SOPs with routine QC checks</dd></div>
-            <div>
-              <dt class="mono" data-en="Services" data-zh="服务">Services</dt>
-              <dd class="lines">
-                <a href="/#service-operations"><span class="mono">01</span><span data-en="AI &amp; Cloud Account Operations" data-zh="AI 与云账号运营">AI &amp; Cloud Account Operations</span></a>
-                <a href="/#service-access"><span class="mono">02</span><span data-en="AI Model &amp; API Access" data-zh="AI 模型与 API 接入">AI Model &amp; API Access</span></a>
-                <a href="/#service-implementation"><span class="mono">03</span><span data-en="Enterprise AI Implementation" data-zh="企业 AI 落地">Enterprise AI Implementation</span></a>
-              </dd>
+          <ul class="scope">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Setup and configuration of AI, cloud and SaaS accounts" data-zh="AI、云与 SaaS 账号的创建与配置">Setup and configuration of AI, cloud and SaaS accounts</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Provisioning and subscription requests" data-zh="处理开通与订阅申请">Provisioning and subscription requests</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Seat, plan and renewal management" data-zh="席位、套餐与续费管理">Seat, plan and renewal management</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Billing and order record-keeping" data-zh="账单与订单记录维护">Billing and order record-keeping</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Account-status monitoring and early issue flagging" data-zh="账号状态监控，发现问题及早提醒">Account-status monitoring and early issue flagging</span></li>
+          </ul>
+          <p class="note"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span data-en="Accounts under this service are held and managed by Kahome Inc. We give your team the access it needs and bill you for the seats and subscriptions you use. The underlying platforms set their own terms and availability." data-zh="这项服务所用的账号由 Kahome Inc 持有和管理：我们为你的团队开通所需的使用权限，并按你使用的席位与订阅向你收费。底层平台的条款与可用性由平台自行决定。">Accounts under this service are held and managed by Kahome Inc. We give your team the access it needs and bill you for the seats and subscriptions you use. The underlying platforms set their own terms and availability.</span></p>
+          <a class="btn btn-soft" href="/#contact"><span data-en="Discuss account operations" data-zh="聊聊账号运营">Discuss account operations</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- S/02 -->
+        <article class="card c-blue spot sv s7" id="service-access" aria-labelledby="s2-h" data-rv>
+          <div class="sv-copy">
+            <p class="tag"><b>02</b><span data-en="Access" data-zh="接入">Access</span></p>
+            <h3 class="h3" id="s2-h" data-en="AI Model &amp; API Access" data-zh="AI 模型与 API 接入">AI Model &amp; API Access</h3>
+            <p class="sv-sum" data-en="We get developers and teams up and running with leading AI models and APIs&nbsp;— then keep keys, usage and spend visible, with the aim that month-end holds no surprises." data-zh="帮开发者和团队尽快用上主流 AI 模型与 API；密钥、用量和花费都看得见，目标是月底对账不再有意外。">We get developers and teams up and running with leading AI models and APIs&nbsp;— then keep keys, usage and spend visible, with the aim that month-end holds no surprises.</p>
+          </div>
+          <figure class="vg vg-acc" aria-hidden="true">
+            <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+            <svg class="stk" viewBox="0 0 24 24" focusable="false"><use href="#i-star"/></svg>
+            <div class="cfg">
+              <div class="win-bar"><i></i><i></i><i></i><span class="cm" data-en="# access overview" data-zh="# 接入概览"># access overview</span></div>
+              <dl>
+                <div><dt>team</dt><dd data-en="your team" data-zh="你的团队">your team</dd></div>
+                <div><dt>models</dt><dd data-en="leading AI models" data-zh="主流 AI 模型">leading AI models</dd></div>
+                <div><dt>keys</dt><dd data-en="managed per project" data-zh="按项目管理">managed per project</dd></div>
+                <div><dt>usage</dt><dd data-en="visible by project" data-zh="按项目查看">visible by project</dd></div>
+                <div><dt>billing</dt><dd data-en="one consolidated bill" data-zh="合并为一份账单">one consolidated bill</dd></div>
+                <div><dt>support</dt><dd>EN / 中文</dd></div>
+              </dl>
             </div>
-          </dl>
-        </aside>
+            <div class="use">
+              <p data-en="usage by project (illustrative)" data-zh="各项目用量（示意）">usage by project (illustrative)</p>
+              <div><span data-en="Project A" data-zh="项目 A">Project A</span><i></i></div>
+              <div><span data-en="Project B" data-zh="项目 B">Project B</span><i></i></div>
+              <div><span data-en="Project C" data-zh="项目 C">Project C</span><i></i></div>
+            </div>
+          </figure>
+          <ul class="scope scope--2">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Access setup for leading AI models and APIs" data-zh="主流 AI 模型与 API 的接入配置">Access setup for leading AI models and APIs</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Key and usage management" data-zh="密钥与用量管理">Key and usage management</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Usage monitoring and cost visibility" data-zh="用量监控，成本看得见">Usage monitoring and cost visibility</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Consolidated billing" data-zh="合并账单">Consolidated billing</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Bilingual technical support" data-zh="中英双语技术支持">Bilingual technical support</span></li>
+          </ul>
+          <p class="note"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span data-en="Access is provided through accounts and keys that Kahome Inc holds and manages. We issue access to your team and bill you for usage. The underlying platforms set their own terms and availability. Ask us which models and platforms we currently support." data-zh="你的团队通过 Kahome Inc 持有和管理的账号与密钥接入模型与 API：访问权限由我们分配，并按用量向你收费。底层平台的条款与可用性由平台自行决定。目前支持哪些模型与平台，欢迎直接来问。">Access is provided through accounts and keys that Kahome Inc holds and manages. We issue access to your team and bill you for usage. The underlying platforms set their own terms and availability. Ask us which models and platforms we currently support.</span></p>
+          <a class="btn btn-soft" href="/#contact"><span data-en="Discuss model and API access" data-zh="聊聊模型与 API 接入">Discuss model and API access</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        </article>
+
+        <!-- S/03 -->
+        <article class="card c-navy on-dark spot sv s5" id="service-implementation" aria-labelledby="s3-h" data-rv>
+          <div class="sv-copy">
+            <p class="tag"><b>03</b><span data-en="Build" data-zh="落地">Build</span></p>
+            <h3 class="h3" id="s3-h" data-en="Enterprise AI Implementation" data-zh="企业 AI 落地">Enterprise AI Implementation</h3>
+            <p class="sv-sum" data-en="AI agents, workflow automation, custom development and integrations&nbsp;— scoped around the work your business actually does, and taken from discovery and pilot through deployment and ongoing support." data-zh="AI 智能体、流程自动化、定制开发与系统集成：围绕你的真实业务来设计，从需求梳理、试点验证，到正式部署和持续支持，全程跟进。">AI agents, workflow automation, custom development and integrations&nbsp;— scoped around the work your business actually does, and taken from discovery and pilot through deployment and ongoing support.</p>
+          </div>
+          <figure class="vg vg-imp">
+            <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+            <ol class="ph" aria-label="Engagement phases" data-arialabel-en="Engagement phases" data-arialabel-zh="项目阶段">
+              <li><span aria-hidden="true">P1</span><b data-en="Discovery" data-zh="需求梳理">Discovery</b><em data-en="Map the workflow and the payoff" data-zh="理清流程，算清收益">Map the workflow and the payoff</em></li>
+              <li><span aria-hidden="true">P2</span><b data-en="Pilot" data-zh="试点验证">Pilot</b><em data-en="Prove it on a small scope" data-zh="小范围先跑通">Prove it on a small scope</em></li>
+              <li><span aria-hidden="true">P3</span><b data-en="Deployment" data-zh="正式部署">Deployment</b><em data-en="Ship it into daily work" data-zh="接入日常工作">Ship it into daily work</em></li>
+              <li><span aria-hidden="true">P4</span><b data-en="Ongoing support" data-zh="持续支持">Ongoing support</b><em data-en="Tune, maintain, extend" data-zh="调优、维护、扩展">Tune, maintain, extend</em></li>
+            </ol>
+            <svg class="ph-core" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          </figure>
+          <ul class="scope">
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="AI agents" data-zh="AI 智能体">AI agents</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Workflow automation" data-zh="流程自动化">Workflow automation</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Custom development" data-zh="定制开发">Custom development</span></li>
+            <li><svg class="i" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-en="Integrations with the tools and systems you already use" data-zh="与现有工具和系统打通">Integrations with the tools and systems you already use</span></li>
+          </ul>
+          <p class="note"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span data-en="We start small on purpose. A pilot shows whether an agent or automation pays off before you commit to a full rollout." data-zh="我们刻意从小处做起：先用试点验证智能体或自动化是否划算，再决定要不要全面铺开。">We start small on purpose. A pilot shows whether an agent or automation pays off before you commit to a full rollout.</span></p>
+          <a class="btn btn-soft" href="/#contact"><span data-en="Discuss an implementation" data-zh="聊聊 AI 落地">Discuss an implementation</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===== Proof strip ===== -->
-  <section class="section section--flush proof" aria-labelledby="proof-h">
+  <!-- ===== Who we serve ===== -->
+  <section class="sec sec--flush" id="who" aria-labelledby="who-h">
     <div class="wrap">
-      <h2 class="vh" id="proof-h" data-en="K&amp;A at a glance" data-zh="K&amp;A 概览">K&amp;A at a glance</h2>
-      <ul class="proof-list">
-        <li>
-          <span class="proof-val" data-en="3 service lines" data-zh="三条服务线">3 service lines</span>
-          <span class="proof-lab" data-en="Account operations, model and API access, implementation." data-zh="账号运营、模型与 API 接入、AI 落地。">Account operations, model and API access, implementation.</span>
-        </li>
-        <li>
-          <span class="proof-val">EN / 中文</span>
-          <span class="proof-lab" data-en="Bilingual support in English and Mandarin." data-zh="中英双语支持，中文、英文都可以直接沟通。">Bilingual support in English and Mandarin.</span>
-        </li>
-        <li>
-          <span class="proof-val" data-en="Irvine, CA" data-zh="加州尔湾">Irvine, CA</span>
-          <span class="proof-lab" data-en="A US-based team working from an office in Irvine, California." data-zh="团队在美国本土，办公地点在加州尔湾。">A US-based team working from an office in Irvine, California.</span>
-        </li>
-        <li>
-          <span class="proof-val" data-en="SOPs + routine QC" data-zh="SOP + 例行质检">SOPs + routine QC</span>
-          <span class="proof-lab" data-en="Documented procedures with routine quality-control checks." data-zh="按书面流程执行，例行质检。">Documented procedures with routine quality-control checks.</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ===== 01 Services ===== -->
-  <section class="section" id="services" aria-labelledby="services-h">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-index"><span class="mono num">01</span><span class="mono" data-en="Services" data-zh="服务">Services</span></p>
-        <h2 id="services-h" data-en="Three service lines. One accountable team." data-zh="三条服务线，一个团队负责。">Three service lines. One accountable team.</h2>
-        <p class="sec-lede" data-en="Each line stands on its own. Together they cover the whole path, from the first account to AI running in production." data-zh="每条服务线都可以单独选用；合在一起，从第一个账号到 AI 正式上线运行，全程都有人管。">Each line stands on its own. Together they cover the whole path, from the first account to AI running in production.</p>
+      <header class="sec-head" data-rv>
+        <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Who we serve" data-zh="服务对象">Who we serve</span></p>
+        <h2 class="h2 h2--narrow" id="who-h" data-html-en="For teams that would rather use AI than administer it." data-html-zh='<span class="nb">把精力留给用 AI，</span><span class="nb">而不是管 AI。</span>'>For teams that would rather use AI than administer it.</h2>
       </header>
-
-      <!-- S/01 -->
-      <article class="spec" id="service-operations" aria-labelledby="s1-h" data-reveal>
-        <header class="spec-head">
-          <p class="mono spec-no"><span>S/01</span><span class="spec-handle" data-en="Operate" data-zh="运营">Operate</span></p>
-          <div>
-            <h3 class="spec-title" id="s1-h" data-en="AI &amp; Cloud Account Operations" data-zh="AI 与云账号运营">AI &amp; Cloud Account Operations</h3>
-            <p class="spec-sum" data-en="We provide and run the AI, cloud and SaaS accounts your team depends on — so seats, plans and renewals stop being somebody’s side job." data-zh="你的团队要用的 AI、云与 SaaS 账号由我们提供，创建、配置和日常管理也由我们负责。席位、套餐、续费，不再是谁顺手兼着的杂事。">We provide and run the AI, cloud and SaaS accounts your team depends on — so seats, plans and renewals stop being somebody’s side job.</p>
-          </div>
-          <dl class="meta-table meta-table--compact">
-            <div><dt class="mono" data-en="Format" data-zh="形式">Format</dt><dd data-en="Ongoing, day-to-day operations" data-zh="长期合作，日常运营">Ongoing, day-to-day operations</dd></div>
-            <div><dt class="mono" data-en="Best for" data-zh="适合">Best for</dt><dd data-en="Teams that rely on many AI, cloud and SaaS tools and seats" data-zh="要用到多个 AI、云与 SaaS 工具和席位的团队">Teams that rely on many AI, cloud and SaaS tools and seats</dd></div>
-          </dl>
-        </header>
-
-        <figure class="spec-diagram">
-          <figcaption class="mono dg-cap"><span data-en="Fig. S/01 — Account lifecycle" data-zh="图 S/01 · 账号生命周期">Fig. S/01 — Account lifecycle</span><span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span></figcaption>
-          <div class="cycle-wrap">
-            <ol class="cycle">
-              <li><span class="chip"><span class="mono">1</span><span data-en="Set up" data-zh="创建">Set up</span></span></li>
-              <li><span class="chip"><span class="mono">2</span><span data-en="Provision" data-zh="开通">Provision</span></span></li>
-              <li><span class="chip"><span class="mono">3</span><span data-en="Manage" data-zh="管理">Manage</span></span></li>
-              <li><span class="chip"><span class="mono">4</span><span data-en="Renew" data-zh="续费">Renew</span></span></li>
-              <li><span class="chip"><span class="mono">5</span><span data-en="Monitor" data-zh="监控">Monitor</span></span></li>
-            </ol>
-            <p class="cycle-note" data-en="Billing and order records are kept up to date along the way." data-zh="账单与订单记录，一路同步更新。">Billing and order records are kept up to date along the way.</p>
-            <p class="mono cycle-loop"><svg aria-hidden="true" focusable="false"><use href="#i-loop"/></svg><span data-en="Continuous cycle" data-zh="循环进行">Continuous cycle</span></p>
-          </div>
-        </figure>
-
-        <div class="spec-body">
-          <div class="spec-col">
-            <h4 class="mono" data-en="Scope" data-zh="服务范围">Scope</h4>
-            <ul class="scope">
-              <li data-n="1"><span data-en="Setup and configuration of AI, cloud and SaaS accounts" data-zh="AI、云与 SaaS 账号的创建与配置">Setup and configuration of AI, cloud and SaaS accounts</span></li>
-              <li data-n="1"><span data-en="Provisioning and subscription requests" data-zh="处理开通与订阅申请">Provisioning and subscription requests</span></li>
-              <li data-n="1"><span data-en="Seat, plan and renewal management" data-zh="席位、套餐与续费管理">Seat, plan and renewal management</span></li>
-              <li data-n="1"><span data-en="Billing and order record-keeping" data-zh="账单与订单记录维护">Billing and order record-keeping</span></li>
-              <li data-n="1"><span data-en="Account-status monitoring and early issue flagging" data-zh="账号状态监控，发现问题及早提醒">Account-status monitoring and early issue flagging</span></li>
-            </ul>
-          </div>
-          <div class="spec-col">
-            <h4 class="mono" data-en="What you get" data-zh="你会得到">What you get</h4>
-            <ul class="gets">
-              <li data-en="An SOP-driven operations team handling your requests" data-zh="一支按 SOP 做事的运营团队，处理你提交的各项需求">An SOP-driven operations team handling your requests</li>
-              <li data-en="Routine quality-control checks on the work" data-zh="工作成果有例行质检">Routine quality-control checks on the work</li>
-              <li data-en="Clean records of accounts, billing and orders" data-zh="账号、账单、订单，记录清晰">Clean records of accounts, billing and orders</li>
-              <li data-en="An early flag when an account needs attention" data-zh="账号需要留意时，及早提醒你">An early flag when an account needs attention</li>
-            </ul>
-          </div>
-        </div>
-
-        <footer class="spec-foot">
-          <p class="spec-note"><svg aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><span data-en="Accounts under this service are held and managed by Kahome Inc. We give your team the access it needs and bill you for the seats and subscriptions you use. The underlying platforms set their own terms and availability." data-zh="这项服务所用的账号由 Kahome Inc 持有和管理：我们为你的团队开通所需的使用权限，并按你使用的席位与订阅向你收费。底层平台的条款与可用性由平台自行决定。">Accounts under this service are held and managed by Kahome Inc. We give your team the access it needs and bill you for the seats and subscriptions you use. The underlying platforms set their own terms and availability.</span></p>
-          <a class="link-arrow" href="/#contact"><span data-en="Discuss account operations" data-zh="聊聊账号运营">Discuss account operations</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-        </footer>
-      </article>
-
-      <!-- S/02 -->
-      <article class="spec" id="service-access" aria-labelledby="s2-h" data-reveal>
-        <header class="spec-head">
-          <p class="mono spec-no"><span>S/02</span><span class="spec-handle" data-en="Access" data-zh="接入">Access</span></p>
-          <div>
-            <h3 class="spec-title" id="s2-h" data-en="AI Model &amp; API Access" data-zh="AI 模型与 API 接入">AI Model &amp; API Access</h3>
-            <p class="spec-sum" data-en="We get developers and teams up and running with leading AI models and APIs — then keep keys, usage and spend visible, with the aim that month-end holds no surprises." data-zh="帮开发者和团队尽快用上主流 AI 模型与 API；密钥、用量和花费都看得见，目标是月底对账不再有意外。">We get developers and teams up and running with leading AI models and APIs — then keep keys, usage and spend visible, with the aim that month-end holds no surprises.</p>
-          </div>
-          <dl class="meta-table meta-table--compact">
-            <div><dt class="mono" data-en="Format" data-zh="形式">Format</dt><dd data-en="Access setup, then ongoing support" data-zh="先完成接入，之后持续支持">Access setup, then ongoing support</dd></div>
-            <div><dt class="mono" data-en="Best for" data-zh="适合">Best for</dt><dd data-en="Developers and engineering teams" data-zh="开发者与工程团队">Developers and engineering teams</dd></div>
-          </dl>
-        </header>
-
-        <figure class="spec-diagram spec-diagram--lav">
-          <figcaption class="mono dg-cap"><span data-en="Fig. S/02 — Access overview" data-zh="图 S/02 · 接入概览">Fig. S/02 — Access overview</span><span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span></figcaption>
-          <div class="access">
-            <div class="access-config">
-              <span class="comment" data-en="# access overview" data-zh="# 接入概览"># access overview</span>
-              <dl>
-                <dt>team</dt><dd data-en="your team" data-zh="你的团队">your team</dd>
-                <dt>models</dt><dd data-en="leading AI models" data-zh="主流 AI 模型">leading AI models</dd>
-                <dt>keys</dt><dd data-en="managed per project" data-zh="按项目管理">managed per project</dd>
-                <dt>usage</dt><dd data-en="visible by project" data-zh="按项目查看">visible by project</dd>
-                <dt>billing</dt><dd data-en="one consolidated bill" data-zh="合并为一份账单">one consolidated bill</dd>
-                <dt>support</dt><dd>EN / 中文</dd>
-              </dl>
+      <ul class="bento">
+        <li class="card c-blue spot who-card s5" data-rv>
+          <div class="wv wv-dev" aria-hidden="true">
+            <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+            <span class="ico ico--ink"><svg class="i" focusable="false"><use href="#i-code"/></svg></span>
+            <div class="wv-code">
+              <div class="win-bar"><i></i><i></i><i></i></div>
+              <div class="wv-line"><b>&gt;_</b><i></i><i></i></div>
+              <div class="wv-line"><i></i><i></i><i></i></div>
+              <div class="wv-line"><i></i><i></i></div>
+              <div class="wv-line"><i></i><u></u></div>
             </div>
-            <div class="access-usage">
-              <p class="mono usage-title" data-en="usage by project (illustrative)" data-zh="各项目用量（示意）">usage by project (illustrative)</p>
-              <p class="usage-row usage-row--a"><span data-en="Project A" data-zh="项目 A">Project A</span><i aria-hidden="true"></i></p>
-              <p class="usage-row usage-row--b"><span data-en="Project B" data-zh="项目 B">Project B</span><i aria-hidden="true"></i></p>
-              <p class="usage-row usage-row--c"><span data-en="Project C" data-zh="项目 C">Project C</span><i aria-hidden="true"></i></p>
-            </div>
+            <div class="wv-chip wv-key"><span class="ico ico--blue"><svg class="i" focusable="false"><use href="#i-key"/></svg></span><span class="wv-dots"><i></i><i></i><i></i><i></i><i></i></span><svg class="i ok" focusable="false"><use href="#i-check"/></svg></div>
           </div>
-        </figure>
-
-        <div class="spec-body">
-          <div class="spec-col">
-            <h4 class="mono" data-en="Scope" data-zh="服务范围">Scope</h4>
-            <ul class="scope">
-              <li data-n="2"><span data-en="Access setup for leading AI models and APIs" data-zh="主流 AI 模型与 API 的接入配置">Access setup for leading AI models and APIs</span></li>
-              <li data-n="2"><span data-en="Key and usage management" data-zh="密钥与用量管理">Key and usage management</span></li>
-              <li data-n="2"><span data-en="Usage monitoring and cost visibility" data-zh="用量监控，成本看得见">Usage monitoring and cost visibility</span></li>
-              <li data-n="2"><span data-en="Consolidated billing" data-zh="合并账单">Consolidated billing</span></li>
-              <li data-n="2"><span data-en="Bilingual technical support" data-zh="中英双语技术支持">Bilingual technical support</span></li>
-            </ul>
-          </div>
-          <div class="spec-col">
-            <h4 class="mono" data-en="What you get" data-zh="你会得到">What you get</h4>
-            <ul class="gets">
-              <li data-en="Developers working with the models they need, sooner" data-zh="开发者更快用上需要的模型">Developers working with the models they need, sooner</li>
-              <li data-en="Keys and usage managed in an orderly way" data-zh="密钥与用量，管得井井有条">Keys and usage managed in an orderly way</li>
-              <li data-en="A clear view of what is being spent, and where" data-zh="花了多少、花在哪里，一目了然">A clear view of what is being spent, and where</li>
-              <li data-en="One consolidated bill" data-zh="一份合并账单">One consolidated bill</li>
-              <li data-en="Technical support in English or Mandarin" data-zh="技术支持，中文、英文均可">Technical support in English or Mandarin</li>
-            </ul>
-          </div>
-        </div>
-
-        <footer class="spec-foot">
-          <p class="spec-note"><svg aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><span data-en="Access is provided through accounts and keys that Kahome Inc holds and manages. We issue access to your team and bill you for usage. The underlying platforms set their own terms and availability. Ask us which models and platforms we currently support." data-zh="你的团队通过 Kahome Inc 持有和管理的账号与密钥接入模型与 API：访问权限由我们分配，并按用量向你收费。底层平台的条款与可用性由平台自行决定。目前支持哪些模型与平台，欢迎直接来问。">Access is provided through accounts and keys that Kahome Inc holds and manages. We issue access to your team and bill you for usage. The underlying platforms set their own terms and availability. Ask us which models and platforms we currently support.</span></p>
-          <a class="link-arrow" href="/#contact"><span data-en="Discuss model and API access" data-zh="聊聊模型与 API 接入">Discuss model and API access</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-        </footer>
-      </article>
-
-      <!-- S/03 -->
-      <article class="spec" id="service-implementation" aria-labelledby="s3-h" data-reveal>
-        <header class="spec-head">
-          <p class="mono spec-no"><span>S/03</span><span class="spec-handle" data-en="Build" data-zh="落地">Build</span></p>
-          <div>
-            <h3 class="spec-title" id="s3-h" data-en="Enterprise AI Implementation" data-zh="企业 AI 落地">Enterprise AI Implementation</h3>
-            <p class="spec-sum" data-en="AI agents, workflow automation, custom development and integrations — scoped around the work your business actually does, and taken from discovery and pilot through deployment and ongoing support." data-zh="AI 智能体、流程自动化、定制开发与系统集成：围绕你的真实业务来设计，从需求梳理、试点验证，到正式部署和持续支持，全程跟进。">AI agents, workflow automation, custom development and integrations — scoped around the work your business actually does, and taken from discovery and pilot through deployment and ongoing support.</p>
-          </div>
-          <dl class="meta-table meta-table--compact">
-            <div><dt class="mono" data-en="Format" data-zh="形式">Format</dt><dd data-en="Project-based, then ongoing support" data-zh="按项目交付，上线后持续支持">Project-based, then ongoing support</dd></div>
-            <div><dt class="mono" data-en="Best for" data-zh="适合">Best for</dt><dd data-en="Businesses with workflows worth automating" data-zh="业务流程值得自动化的企业">Businesses with workflows worth automating</dd></div>
-          </dl>
-        </header>
-
-        <figure class="spec-diagram">
-          <figcaption class="mono dg-cap"><span data-en="Fig. S/03 — Engagement phases" data-zh="图 S/03 · 项目阶段">Fig. S/03 — Engagement phases</span><span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span></figcaption>
-          <div class="phases-wrap">
-            <ol class="phases">
-              <li><span class="mono">P1</span><span class="t" data-en="Discovery" data-zh="需求梳理">Discovery</span><span class="d" data-en="Map the workflow and the payoff" data-zh="理清流程，算清收益">Map the workflow and the payoff</span></li>
-              <li><span class="mono">P2</span><span class="t" data-en="Pilot" data-zh="试点验证">Pilot</span><span class="d" data-en="Prove it on a small scope" data-zh="小范围先跑通">Prove it on a small scope</span></li>
-              <li><span class="mono">P3</span><span class="t" data-en="Deployment" data-zh="正式部署">Deployment</span><span class="d" data-en="Ship it into daily work" data-zh="接入日常工作">Ship it into daily work</span></li>
-              <li><span class="mono">P4</span><span class="t" data-en="Ongoing support" data-zh="持续支持">Ongoing support</span><span class="d" data-en="Tune, maintain, extend" data-zh="调优、维护、扩展">Tune, maintain, extend</span></li>
-            </ol>
-            <span class="loop-core" aria-hidden="true"><svg focusable="false"><use href="#i-star-deep"/></svg></span>
-          </div>
-        </figure>
-
-        <div class="spec-body">
-          <div class="spec-col">
-            <h4 class="mono" data-en="Scope" data-zh="服务范围">Scope</h4>
-            <ul class="scope">
-              <li data-n="3"><span data-en="AI agents" data-zh="AI 智能体">AI agents</span></li>
-              <li data-n="3"><span data-en="Workflow automation" data-zh="流程自动化">Workflow automation</span></li>
-              <li data-n="3"><span data-en="Custom development" data-zh="定制开发">Custom development</span></li>
-              <li data-n="3"><span data-en="Integrations with the tools and systems you already use" data-zh="与现有工具和系统打通">Integrations with the tools and systems you already use</span></li>
-            </ul>
-          </div>
-          <div class="spec-col">
-            <h4 class="mono" data-en="What you get" data-zh="你会得到">What you get</h4>
-            <ul class="gets">
-              <li data-en="A pilot on one real workflow before any full rollout" data-zh="铺开之前，先拿一个真实流程做试点">A pilot on one real workflow before any full rollout</li>
-              <li data-en="A working build, integrated with the tools you already use" data-zh="一套真正能用的成品，并与现有工具打通">A working build, integrated with the tools you already use</li>
-              <li data-en="Rollout to the people who will actually use it" data-zh="交到真正要用它的人手里">Rollout to the people who will actually use it</li>
-              <li data-en="Maintenance and support after launch" data-zh="上线之后，继续维护和支持">Maintenance and support after launch</li>
-            </ul>
-          </div>
-        </div>
-
-        <footer class="spec-foot">
-          <p class="spec-note"><svg aria-hidden="true" focusable="false"><use href="#i-doc"/></svg><span data-en="We start small on purpose. A pilot shows whether an agent or automation pays off before you commit to a full rollout." data-zh="我们刻意从小处做起：先用试点验证智能体或自动化是否划算，再决定要不要全面铺开。">We start small on purpose. A pilot shows whether an agent or automation pays off before you commit to a full rollout.</span></p>
-          <a class="link-arrow" href="/#contact"><span data-en="Discuss an implementation" data-zh="聊聊 AI 落地">Discuss an implementation</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-        </footer>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===== 02 Who we serve ===== -->
-  <section class="section" id="who" aria-labelledby="who-h">
-    <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-index"><span class="mono num">02</span><span class="mono" data-en="Who we serve" data-zh="服务对象">Who we serve</span></p>
-        <h2 id="who-h" data-en="For teams that would rather use AI than administer it." data-zh="把精力留给用 AI，而不是管 AI。">For teams that would rather use AI than administer it.</h2>
-      </header>
-      <ul class="serve" data-reveal>
-        <li>
-          <p class="mono">A</p>
-          <h3 data-en="Developers and engineering teams" data-zh="开发者与工程团队">Developers and engineering teams</h3>
+          <h3 class="h3" data-en="Developers and engineering teams" data-zh="开发者与工程团队">Developers and engineering teams</h3>
           <p data-en="Get working access to leading AI models and APIs, without carrying the account, key and billing overhead yourselves." data-zh="用上主流 AI 模型与 API，账号、密钥、账单这些杂事不必自己扛。">Get working access to leading AI models and APIs, without carrying the account, key and billing overhead yourselves.</p>
         </li>
-        <li>
-          <p class="mono">B</p>
-          <h3 data-en="Startups and growing businesses" data-zh="创业公司与成长型企业">Startups and growing businesses</h3>
-          <p data-en="A dependable operations team that provides and runs the AI, cloud and SaaS accounts you use, so you don’t have to hire one of your own — plus help building where automation makes sense." data-zh="团队要用的 AI、云与 SaaS 账号，由靠得住的运营团队提供并打理，不必为此单独招人；适合自动化的环节，我们帮你做出来。">A dependable operations team that provides and runs the AI, cloud and SaaS accounts you use, so you don’t have to hire one of your own — plus help building where automation makes sense.</p>
+        <li class="card spot who-card s7" data-rv>
+          <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <div class="wv wv-grow" aria-hidden="true">
+            <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+            <span class="ico ico--ink"><svg class="i" focusable="false"><use href="#i-up"/></svg></span>
+            <div class="wv-chart">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+              <svg class="wv-trend" viewBox="0 0 100 100" preserveAspectRatio="none" focusable="false"><path d="M6 76C30 66 62 42 96 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.1 9" vector-effect="non-scaling-stroke"/></svg>
+              <svg class="stk" viewBox="0 0 24 24" focusable="false"><use href="#i-star"/></svg>
+            </div>
+            <div class="wv-chip wv-team"><span class="seats"><i></i><i></i><i></i><i></i><i></i></span><span class="tog"></span></div>
+          </div>
+          <h3 class="h3" data-en="Startups and growing businesses" data-zh="创业公司与成长型企业">Startups and growing businesses</h3>
+          <p data-en="A dependable operations team that provides and runs the AI, cloud and SaaS accounts you use, so you don’t have to hire one of your own&nbsp;— plus help building where automation makes sense." data-zh="团队要用的 AI、云与 SaaS 账号，由靠得住的运营团队提供并打理，不必为此单独招人；适合自动化的环节，我们帮你做出来。">A dependable operations team that provides and runs the AI, cloud and SaaS accounts you use, so you don’t have to hire one of your own&nbsp;— plus help building where automation makes sense.</p>
         </li>
-        <li>
-          <p class="mono">C</p>
-          <h3 data-en="Cross-border and bilingual teams" data-zh="跨境与双语团队">Cross-border and bilingual teams</h3>
-          <p data-en="Support in both English and Mandarin, from a US-based team that works comfortably in either." data-zh="团队在美国本土，中英文沟通都顺畅，跨境协作不用反复转述。">Support in both English and Mandarin, from a US-based team that works comfortably in either.</p>
+        <li class="card c-lav spot who-card who-wide s12" data-rv>
+          <div class="who-txt">
+            <div class="wv wv-talk" aria-hidden="true">
+              <span class="illus" data-en="Illustrative" data-zh="示意">Illustrative</span>
+              <span class="ico ico--ink"><svg class="i" focusable="false"><use href="#i-chat"/></svg></span>
+              <span class="wv-bub"><i></i><i></i><i></i></span>
+              <span class="wv-swap"><svg class="i" focusable="false"><use href="#i-swap"/></svg></span>
+              <span class="wv-bub wv-bub--b"><i></i><i></i><i></i></span>
+            </div>
+            <h3 class="h3" data-en="Cross-border and bilingual teams" data-zh="跨境与双语团队">Cross-border and bilingual teams</h3>
+            <p data-en="Support in both English and Mandarin, from a US-based team that works comfortably in either." data-zh="团队在美国本土，中英文沟通都顺畅，跨境协作不用反复转述。">Support in both English and Mandarin, from a US-based team that works comfortably in either.</p>
+          </div>
+          <p class="bigtype" aria-hidden="true"><span>EN</span><svg class="i" viewBox="0 0 24 24" focusable="false"><use href="#i-star"/></svg><span class="zh">中文</span></p>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ===== 03 How it works ===== -->
-  <section class="section" id="how" aria-labelledby="how-h">
+  <!-- ===== How it works ===== -->
+  <section class="sec sec--flush" id="how" aria-labelledby="how-h">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-index"><span class="mono num">03</span><span class="mono" data-en="How it works" data-zh="合作流程">How it works</span></p>
-        <h2 id="how-h" data-en="Four steps, in plain sight." data-zh="四步走，过程看得见。">Four steps, in plain sight.</h2>
-        <p class="sec-lede" data-en="Start wherever you are. You can begin at any step and add the others later." data-zh="从哪一步开始都可以，其余的以后再加。">Start wherever you are. You can begin at any step and add the others later.</p>
+      <header class="sec-head sec-head--split" data-rv>
+        <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="How it works" data-zh="合作流程">How it works</span></p>
+        <h2 class="h2" id="how-h" data-html-en="Four steps, in plain sight." data-html-zh='<span class="nb">四步走，</span><span class="nb">过程看得见。</span>'>Four steps, in plain sight.</h2>
+        <p class="lede" data-en="Start wherever you are. You can begin at any step and add the others later." data-zh="从哪一步开始都可以，其余的以后再加。">Start wherever you are. You can begin at any step and add the others later.</p>
       </header>
-      <ol class="steps" data-reveal>
-        <li>
-          <span class="step-no" aria-hidden="true">01</span>
-          <div>
-            <h3 data-en="Consult" data-zh="咨询">Consult</h3>
-            <p data-en="We learn your team, your tools and your goals." data-zh="先了解你的团队、现有工具和目标。">We learn your team, your tools and your goals.</p>
-          </div>
+      <ol class="steps">
+        <li class="card c-blue spot step step--1" data-rv>
+          <span class="step-n" aria-hidden="true">01</span>
+          <h3 class="h3" data-en="Consult" data-zh="咨询">Consult</h3>
+          <p data-en="We learn your team, your tools and your goals." data-zh="先了解你的团队、现有工具和目标。">We learn your team, your tools and your goals.</p>
         </li>
-        <li>
-          <span class="step-no" aria-hidden="true">02</span>
-          <div>
-            <h3 data-en="Set up" data-zh="搭建">Set up</h3>
-            <p data-en="Accounts, access and environments set up carefully and documented." data-zh="账号、权限和环境，细致配置，留档可查。">Accounts, access and environments set up carefully and documented.</p>
-          </div>
+        <li class="card c-lav spot step step--2" data-rv>
+          <span class="step-n" aria-hidden="true">02</span>
+          <h3 class="h3" data-en="Set up" data-zh="搭建">Set up</h3>
+          <p data-en="Accounts, access and environments set up carefully and documented." data-zh="账号、权限和环境，细致配置，留档可查。">Accounts, access and environments set up carefully and documented.</p>
         </li>
-        <li>
-          <span class="step-no" aria-hidden="true">03</span>
-          <div>
-            <h3 data-en="Operate" data-zh="运营">Operate</h3>
-            <p data-en="Day-to-day provisioning, subscriptions, monitoring and support." data-zh="日常的开通、订阅管理、状态监控与支持。">Day-to-day provisioning, subscriptions, monitoring and support.</p>
-          </div>
+        <li class="card c-peach spot step step--3" data-rv>
+          <span class="step-n" aria-hidden="true">03</span>
+          <h3 class="h3" data-en="Operate" data-zh="运营">Operate</h3>
+          <p data-en="Day-to-day provisioning, subscriptions, monitoring and support." data-zh="日常的开通、订阅管理、状态监控与支持。">Day-to-day provisioning, subscriptions, monitoring and support.</p>
         </li>
-        <li>
-          <span class="step-no" aria-hidden="true">04</span>
-          <div>
-            <h3 data-en="Build" data-zh="落地">Build</h3>
-            <p data-en="Agents and automation where they genuinely pay off." data-zh="在真正划算的环节，上智能体和自动化。">Agents and automation where they genuinely pay off.</p>
-          </div>
+        <li class="card c-pink spot step step--4" data-rv>
+          <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <span class="step-n" aria-hidden="true">04</span>
+          <h3 class="h3" data-en="Build" data-zh="落地">Build</h3>
+          <p data-en="Agents and automation where they genuinely pay off." data-zh="在真正划算的环节，上智能体和自动化。">Agents and automation where they genuinely pay off.</p>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ===== 04 Why K&A ===== -->
-  <section class="section" id="why" aria-labelledby="why-h">
+  <!-- ===== Why K&A ===== -->
+  <section class="sec sec--flush" id="why" aria-labelledby="why-h">
     <div class="wrap">
-      <header class="sec-head" data-reveal>
-        <p class="sec-index"><span class="mono num">04</span><span class="mono" data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</span></p>
-        <h2 id="why-h" data-en="Plain facts, no superlatives." data-zh="不说大话，只讲事实。">Plain facts, no superlatives.</h2>
-        <p class="sec-lede" data-en="Six things that are simply true about how we work and who we are." data-zh="关于我们是谁、怎么做事，这六条都是实情。">Six things that are simply true about how we work and who we are.</p>
+      <header class="sec-head sec-head--split" data-rv>
+        <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</span></p>
+        <h2 class="h2" id="why-h" data-html-en="Plain facts, no superlatives." data-html-zh='<span class="nb">不说大话，</span><span class="nb">只讲事实。</span>'>Plain facts, no superlatives.</h2>
+        <p class="lede" data-en="Six things that are simply true about how we work and who we are." data-zh="关于我们是谁、怎么做事，这六条都是实情。">Six things that are simply true about how we work and who we are.</p>
       </header>
-      <ul class="facts" data-reveal>
-        <li>
-          <p class="mono">01</p>
-          <h3 data-en="A US company, based in Irvine" data-zh="美国公司，办公地点在尔湾">A US company, based in Irvine</h3>
-          <p data-en="Kahome Inc is based at 400 Spectrum Center Dr, Ste 1900, in Irvine, California. You can call us or write to us." data-zh="Kahome Inc 的办公室在加州尔湾 400 Spectrum Center Dr, Ste 1900。可以打电话，也可以发邮件联系我们。">Kahome Inc is based at 400 Spectrum Center Dr, Ste 1900, in Irvine, California. You can call us or write to us.</p>
+      <ul class="bento facts">
+        <li class="card c-navy on-dark spot fact fact-q s7 r2" data-rv>
+          <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+          <h3 class="h3"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Clear about the model" data-zh="模式讲在明处">Clear about the model</span></h3>
+          <blockquote><p data-html-en="For account and API access services, the accounts and keys are held and managed by Kahome Inc, and we bill you for what you use. We say so up front." data-html-zh='<span class="nb">在账号运营、</span><span class="nb">模型与 API 接入</span><span class="nb">这两条服务线中，</span><span class="nb">账号和密钥</span><span class="nb">由 Kahome Inc</span> <span class="nb">持有和管理，</span><span class="nb">我们按你的使用情况</span><span class="nb">向你收费。</span><span class="nb">这一点，</span><span class="nb">我们事先讲明。</span>'>For account and API access services, the accounts and keys are held and managed by Kahome Inc, and we bill you for what you use. We say so up front.</p></blockquote>
+          <p class="by"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span>Kahome Inc</span></p>
         </li>
-        <li>
-          <p class="mono">02</p>
-          <h3 data-en="A bilingual operations team" data-zh="中英双语运营团队">A bilingual operations team</h3>
+        <li class="card c-blue spot fact s5" data-rv>
+          <svg class="roads" viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M-20 70C120 40 210 130 330 96S470 10 540 40" stroke-width="16"/><path d="M250-20C230 60 300 120 280 200S330 300 320 330" stroke-width="12"/><path d="M-20 210C90 180 150 250 260 230S430 150 540 190" stroke-width="9"/><path d="M400-20C380 60 440 120 430 190S470 290 460 330" stroke-width="7"/></g></svg>
+          <div class="deco" aria-hidden="true"><span class="pin"><svg class="i" focusable="false"><use href="#i-pin"/></svg><span data-en="Irvine, CA" data-zh="加州尔湾">Irvine, CA</span></span></div>
+          <h3 class="h3" data-html-en="A US company, based in Irvine" data-html-zh='<span class="nb">美国公司，</span><span class="nb">办公地点在尔湾</span>'>A US company, based in Irvine</h3>
+          <p data-en="Kahome Inc is based at 400 Spectrum Center Dr, Ste&nbsp;1900, in Irvine, California. You can call us or write to us." data-zh="Kahome Inc 的办公室在加州尔湾 400 Spectrum Center Dr, Ste&nbsp;1900。可以打电话，也可以发邮件联系我们。">Kahome Inc is based at 400 Spectrum Center Dr, Ste&nbsp;1900, in Irvine, California. You can call us or write to us.</p>
+        </li>
+        <li class="card c-lav spot fact s5" data-rv>
+          <div class="deco" aria-hidden="true"><p class="bub"><span>Hello</span><span>你好</span></p></div>
+          <h3 class="h3" data-en="A bilingual operations team" data-zh="中英双语运营团队">A bilingual operations team</h3>
           <p data-en="English and Mandarin, written and spoken, so less gets lost between your team and ours." data-zh="中文、英文，书面和口头都能直接沟通，减少需求在转述中走样。">English and Mandarin, written and spoken, so less gets lost between your team and ours.</p>
         </li>
-        <li>
-          <p class="mono">03</p>
-          <h3 data-en="SOP-driven, with routine QC" data-zh="按 SOP 做事，例行质检">SOP-driven, with routine QC</h3>
+        <li class="card spot fact s4" data-rv>
+          <div class="deco" aria-hidden="true"><p class="chk"><span><svg class="i" focusable="false"><use href="#i-check"/></svg></span><span><svg class="i" focusable="false"><use href="#i-check"/></svg></span><span><svg class="i" focusable="false"><use href="#i-check"/></svg></span></p></div>
+          <h3 class="h3" data-html-en="SOP-driven, with routine QC" data-html-zh='<span class="nb">按 SOP 做事，</span><span class="nb">例行质检</span>'>SOP-driven, with routine QC</h3>
           <p data-en="Work follows written procedures and checklists, with routine quality-control checks." data-zh="工作有书面流程和检查清单可依，并做例行质检。">Work follows written procedures and checklists, with routine quality-control checks.</p>
         </li>
-        <li>
-          <p class="mono">04</p>
-          <h3 data-en="Confidential handling" data-zh="保密处理">Confidential handling</h3>
+        <li class="card c-peach spot fact s4" data-rv>
+          <div class="deco" aria-hidden="true"><div class="seal"><span class="ico ico--ink"><svg class="i" focusable="false"><use href="#i-lock"/></svg></span><span class="dots"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="redact"><i></i><i></i><i></i></span></div></div>
+          <h3 class="h3" data-en="Confidential handling" data-zh="保密处理">Confidential handling</h3>
           <p data-en="Account details, records and business information are handled confidentially." data-zh="账号资料、业务记录和商业信息，我们按保密信息对待和处理。">Account details, records and business information are handled confidentially.</p>
         </li>
-        <li>
-          <p class="mono">05</p>
-          <h3 data-en="Clear about the model" data-zh="模式讲在明处">Clear about the model</h3>
-          <p data-en="For account and API access services, the accounts and keys are held and managed by Kahome Inc, and we bill you for what you use. We say so up front." data-zh="在账号运营、模型与 API 接入这两条服务线中，账号和密钥由 Kahome Inc 持有和管理，我们按你的使用情况向你收费。这一点，我们事先讲明。">For account and API access services, the accounts and keys are held and managed by Kahome Inc, and we bill you for what you use. We say so up front.</p>
-        </li>
-        <li>
-          <p class="mono">06</p>
-          <h3 data-en="Pilot first" data-zh="先试点，再铺开">Pilot first</h3>
+        <li class="card c-pink spot fact s4" data-rv>
+          <div class="deco" aria-hidden="true"><div class="pilot"><p class="pilot-flow"><b data-en="Pilot" data-zh="试点">Pilot</b><svg class="i" focusable="false"><use href="#i-arrow"/></svg><span data-en="Rollout" data-zh="铺开">Rollout</span></p><p class="pilot-grid"><i class="on"><svg class="i" focusable="false"><use href="#i-check"/></svg></i><i></i><i></i><i></i></p></div></div>
+          <h3 class="h3" data-en="Pilot first" data-zh="先试点，再铺开">Pilot first</h3>
           <p data-en="Implementation work starts with a pilot on one workflow, so you can judge the result before committing to a rollout." data-zh="AI 落地项目先拿一个流程做试点，看到结果再决定是否全面铺开。">Implementation work starts with a pilot on one workflow, so you can judge the result before committing to a rollout.</p>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ===== 05 Careers ===== -->
-  <section class="section careers" id="careers" aria-labelledby="careers-h">
+  <!-- ===== Careers ===== -->
+  <section class="sec sec--flush" id="careers" aria-labelledby="careers-h">
     <div class="wrap">
-      <div class="careers-sheet">
-        <header class="careers-head" data-reveal>
-          <div>
-            <p class="sec-index"><span class="mono num">05</span><span class="mono" data-en="Careers" data-zh="加入我们">Careers</span></p>
-            <h2 id="careers-h" data-en="We’re hiring. Join the operations team in Irvine." data-zh="我们在招人：加入尔湾的运营团队。">We’re hiring. Join the operations team in Irvine.</h2>
+      <div class="card jobs jobs--none">
+        <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+        <div class="none-grid" data-rv>
+          <header class="none-head">
+            <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Careers" data-zh="加入我们">Careers</span></p>
+            <h2 class="h2" id="careers-h" data-html-en="No open roles right now." data-html-zh='<span class="nb">目前暂无</span><span class="nb">在招职位。</span>'>No open roles right now.</h2>
+          </header>
+          <div class="none-body">
+            <p class="none-lead" data-html-en="New roles are posted on our careers page and on LinkedIn." data-html-zh='有新职位时，会发布在<span class="nb">“加入我们”页面</span>和 LinkedIn 上。'>New roles are posted on our careers page and on LinkedIn.</p>
+            <p class="none-sub" data-en="Kahome Inc is a growing technology services company based in Irvine, CA. We provide cloud and SaaS account provisioning, subscription management and operational support." data-zh="Kahome Inc 是一家位于加州尔湾、正在成长的科技服务公司，提供云与 SaaS 账号开通、订阅管理和运营支持。">Kahome Inc is a growing technology services company based in Irvine, CA. We provide cloud and SaaS account provisioning, subscription management and operational support.</p>
+            <div class="none-links">
+              <a class="btn btn-dark btn-sm" href="/careers.html"><span data-en="Careers at K&amp;A" data-zh="了解在 K&amp;A 工作">Careers at K&amp;A</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+              <a class="btn btn-light btn-sm" href="https://www.linkedin.com/company/kahomeinc" target="_blank" rel="noopener"><span data-en="Follow us on LinkedIn" data-zh="在 LinkedIn 关注我们">Follow us on LinkedIn</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a>
+            </div>
           </div>
-          <div class="careers-lede">
-            <p data-en="Kahome Inc is a growing technology services company based in Irvine, CA. We provide cloud and SaaS account provisioning, subscription management and operational support, and we’re adding to the team." data-zh="Kahome Inc 是一家位于加州尔湾、正在成长的科技服务公司，提供云与 SaaS 账号开通、订阅管理和运营支持。现在，我们要扩充团队。">Kahome Inc is a growing technology services company based in Irvine, CA. We provide cloud and SaaS account provisioning, subscription management and operational support, and we’re adding to the team.</p>
-            <p class="friendly" data-en="Structured training and clear SOPs show you what good work looks like." data-zh="系统的培训和清晰的 SOP，让你知道什么叫把事做好。">Structured training and clear SOPs show you what good work looks like.</p>
-          </div>
-        </header>
-
-        <hr class="rule">
-
-        <div class="jobs-head">
-          <p class="mono" data-en="Open roles" data-zh="在招职位">Open roles</p>
-          <p class="mono" data-en="1 position" data-zh="共 1 个职位">1 position</p>
         </div>
-        <ul class="job-list">
-          <li>
-            <article class="job-card" aria-labelledby="job-ops-title" data-reveal>
-              <div class="job-card-head">
-                <div>
-                  <p class="badge" data-en="Now hiring" data-zh="招聘中">Now hiring</p>
-                  <h3 class="job-title" id="job-ops-title" data-en="Operational Specialist (Mandarin and English)" data-zh="运营专员（中英双语）">Operational Specialist (Mandarin and English)</h3>
-                  <ul class="job-meta">
-                    <li data-en="Irvine, CA" data-zh="加州尔湾">Irvine, CA</li>
-                    <li data-en="Full-time" data-zh="全职">Full-time</li>
-                    <li data-en="On-site" data-zh="线下办公">On-site</li>
-                    <li data-en="Entry level" data-zh="初级岗位">Entry level</li>
-                  </ul>
-                  <p class="job-sum" data-en="Set up and configure cloud and SaaS accounts following established procedures, process provisioning and subscription requests, and keep account and order records accurate. Mostly computer-based work — no programming experience needed." data-zh="按既定流程创建并配置云与 SaaS 账号，处理开通与订阅申请，保持账号与订单记录准确。工作以电脑操作为主，无需编程经验。">Set up and configure cloud and SaaS accounts following established procedures, process provisioning and subscription requests, and keep account and order records accurate. Mostly computer-based work — no programming experience needed.</p>
-                </div>
-                <div class="job-card-cta">
-                  <a class="btn btn-primary" href="https://www.linkedin.com/jobs/view/4465421800/" target="_blank" rel="noopener"><span data-en="Apply on LinkedIn" data-zh="在 LinkedIn 申请">Apply on LinkedIn</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a>
-                  <a class="btn btn-ghost" href="/careers.html"><span data-en="All open roles" data-zh="全部在招职位">All open roles</span><svg class="arr" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
-                </div>
-              </div>
-              <div class="job-cols">
-                <div class="job-col">
-                  <h4 class="mono" data-en="What you’ll do" data-zh="工作内容">What you’ll do</h4>
-                  <ul class="dash">
-                    <li data-en="Set up and configure cloud and SaaS accounts following established procedures" data-zh="按既定流程创建并配置云与 SaaS 账号">Set up and configure cloud and SaaS accounts following established procedures</li>
-                    <li data-en="Process provisioning and subscription requests" data-zh="处理开通与订阅申请">Process provisioning and subscription requests</li>
-                    <li data-en="Keep account and order records accurate" data-zh="保持账号与订单记录准确">Keep account and order records accurate</li>
-                    <li data-en="Run routine quality-control checks" data-zh="执行例行质检">Run routine quality-control checks</li>
-                    <li data-en="Follow SOPs and checklists" data-zh="按 SOP 和检查清单操作">Follow SOPs and checklists</li>
-                  </ul>
-                </div>
-                <div class="job-col">
-                  <h4 class="mono" data-en="Requirements" data-zh="任职要求">Requirements</h4>
-                  <ul class="dash">
-                    <li data-en="Bilingual in Mandarin and English, written and spoken" data-zh="普通话与英语双语，书面和口头表达流利">Bilingual in Mandarin and English, written and spoken</li>
-                    <li data-en="Strong attention to detail" data-zh="细致认真，注重细节">Strong attention to detail</li>
-                    <li data-en="Comfortable with Excel / Google Sheets" data-zh="具备 Excel 或 Google Sheets 基础">Comfortable with Excel / Google Sheets</li>
-                  </ul>
-                </div>
-                <div class="job-col">
-                  <h4 class="mono" data-en="Benefits" data-zh="福利待遇">Benefits</h4>
-                  <ul class="dash">
-                    <li data-en="401(k) with matching" data-zh="401(k) 退休计划，公司匹配供款">401(k) with matching</li>
-                    <li data-en="Health, dental, vision and life insurance" data-zh="医疗、牙科、眼科及人寿保险">Health, dental, vision and life insurance</li>
-                    <li data-en="Paid time off" data-zh="带薪休假">Paid time off</li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-          </li>
-        </ul>
+        <!-- To list a role here again, see README.md ("Open roles"). -->
       </div>
     </div>
   </section>
 
-  <!-- ===== 06 Contact ===== -->
-  <section class="section" id="contact" aria-labelledby="contact-h">
+  <!-- ===== Contact ===== -->
+  <section class="sec sec--contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
-      <div class="contact-grid">
-        <div class="contact-copy" data-reveal>
-          <p class="sec-index"><span class="mono num">06</span><span class="mono" data-en="Contact" data-zh="联系我们">Contact</span></p>
-          <h2 id="contact-h" data-en="Tell us what you want up and running." data-zh="想把什么用起来？跟我们聊聊。">Tell us what you want up and running.</h2>
-          <p class="sec-lede" data-en="Email or call us directly — in English or Mandarin. Tell us about your team and your tools, and we’ll tell you plainly whether and how we can help." data-zh="发邮件或直接来电，中文、英文都可以。说说你的团队和在用的工具，能不能帮、怎么帮，我们会直说。">Email or call us directly — in English or Mandarin. Tell us about your team and your tools, and we’ll tell you plainly whether and how we can help.</p>
-        </div>
-
-        <div class="letter" data-reveal>
-          <div class="letter-head">
-            <img src="assets/brand/logo.png" width="814" height="252" alt="K&amp;A logo" data-alt-en="K&amp;A logo" data-alt-zh="K&amp;A 标志" loading="lazy" decoding="async">
-            <p class="mono"><span class="legal">Kahome Inc</span><span data-en="AI services" data-zh="AI 服务">AI services</span></p>
+      <div class="cta on-dark">
+        <svg class="stk" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>
+        <div class="cta-grid">
+          <div data-rv>
+            <p class="eyebrow"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="Contact" data-zh="联系我们">Contact</span></p>
+            <h2 class="cta-h" id="contact-h" data-html-en="Tell us what you want up and running." data-html-zh='<span class="nb">想把什么</span><span class="nb">用起来？</span><span class="nb">跟我们聊聊。</span>'>Tell us what you want up and running.</h2>
+            <p class="lede" data-en="Email or call us directly&nbsp;— in English or Mandarin. Tell us about your team and your tools, and we’ll tell you plainly whether and how we can help." data-zh="发邮件或直接来电，中文、英文都可以。说说你的团队和在用的工具，能不能帮、怎么帮，我们会直说。">Email or call us directly&nbsp;— in English or Mandarin. Tell us about your team and your tools, and we’ll tell you plainly whether and how we can help.</p>
           </div>
-          <hr class="rule rule--ink">
-          <dl>
-            <div>
-              <dt class="mono" data-en="Email" data-zh="邮箱">Email</dt>
-              <dd><a class="big-link" href="mailto:damon@thekahome.com">damon@thekahome.com</a></dd>
+          <div class="cta-list" data-rv>
+            <a class="cta-row" href="mailto:damon@thekahome.com"><span class="caps k" data-en="Email" data-zh="邮箱">Email</span><span class="v">damon@thekahome.com</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+            <a class="cta-row" href="tel:+19493003161"><span class="caps k" data-en="Phone" data-zh="电话">Phone</span><span class="v" data-en="(949) 300-3161" data-zh="+1 (949) 300-3161">(949) 300-3161</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+            <div class="cta-row">
+              <span class="caps k" data-en="Office" data-zh="办公地址">Office</span>
+              <address class="v v--s">
+                <span>400 Spectrum Center Dr, Ste&nbsp;1900</span><br>
+                <span data-html-en="Irvine, CA 92618, USA" data-html-zh='Irvine, CA 92618, USA<span class="nb">（美国加州尔湾）</span>'>Irvine, CA 92618, USA</span>
+              </address>
+              <a class="map" href="https://maps.google.com/?q=400+Spectrum+Center+Dr+Ste+1900+Irvine+CA+92618" target="_blank" rel="noopener"><span data-en="View on map" data-zh="在地图中查看">View on map</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a>
             </div>
-            <div>
-              <dt class="mono" data-en="Phone" data-zh="电话">Phone</dt>
-              <dd><a class="big-link" href="tel:+19493003161" data-en="(949) 300-3161" data-zh="+1 (949) 300-3161">(949) 300-3161</a></dd>
-            </div>
-            <div>
-              <dt class="mono" data-en="Office" data-zh="办公地址">Office</dt>
-              <dd>
-                <address>
-                  <span>400 Spectrum Center Dr, Ste 1900</span><br>
-                  <span data-en="Irvine, CA 92618, USA" data-zh="Irvine, CA 92618, USA（美国加州尔湾）">Irvine, CA 92618, USA</span>
-                </address>
-                <a class="sub" href="https://maps.google.com/?q=400+Spectrum+Center+Dr+Ste+1900+Irvine+CA+92618" target="_blank" rel="noopener"><span data-en="View on map" data-zh="在地图中查看">View on map</span><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a>
-              </dd>
-            </div>
-            <div>
-              <dt class="mono">LinkedIn</dt>
-              <dd><a href="https://www.linkedin.com/company/kahomeinc" target="_blank" rel="noopener"><span>linkedin.com/company/kahomeinc</span><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a></dd>
-            </div>
-          </dl>
-          <p class="letter-foot mono"><svg aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="K&amp;A is a brand of Kahome Inc" data-zh="K&amp;A 是 Kahome Inc 旗下品牌">K&amp;A is a brand of Kahome Inc</span></p>
+            <a class="cta-row" href="https://www.linkedin.com/company/kahomeinc" target="_blank" rel="noopener"><span class="caps k">LinkedIn</span><span class="v v--s">linkedin.com/company/<wbr>kahomeinc</span><svg class="i" aria-hidden="true" focusable="false"><use href="#i-out"/></svg><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a>
+          </div>
         </div>
+        <p class="cta-foot"><svg class="i" aria-hidden="true" focusable="false"><use href="#i-star"/></svg><span data-en="K&amp;A is a brand of Kahome Inc" data-zh="K&amp;A 是 Kahome Inc 旗下品牌">K&amp;A is a brand of Kahome Inc</span></p>
       </div>
     </div>
   </section>
@@ -680,44 +532,46 @@
 </main>
 
 <!-- FOOTER START -->
-<footer class="site-footer">
+<footer class="ft">
   <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="brand" href="/"><img src="assets/brand/logo-white.png" width="814" height="252" alt="K&amp;A — home" data-alt-en="K&amp;A — home" data-alt-zh="K&amp;A（返回首页）" loading="lazy" decoding="async"></a>
-        <p class="tag" data-en="AI services by Kahome Inc — access, operations and implementation." data-zh="Kahome Inc 旗下 AI 服务：接入、运营、落地。">AI services by Kahome Inc — access, operations and implementation.</p>
-        <address>
-          <strong>Kahome Inc</strong>
-          <span>400 Spectrum Center Dr, Ste 1900</span><br>
-          <span>Irvine, CA 92618, USA</span><br>
-          <a href="tel:+19493003161" data-en="(949) 300-3161" data-zh="+1 (949) 300-3161">(949) 300-3161</a><br>
-          <a href="mailto:damon@thekahome.com">damon@thekahome.com</a>
-        </address>
+    <div class="card ft-card">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a class="brand" href="/"><img src="assets/brand/logo.png" width="407" height="126" alt="K&amp;A — home" data-alt-en="K&amp;A — home" data-alt-zh="K&amp;A（返回首页）" loading="lazy" decoding="async"></a>
+          <p class="tagline" data-html-en="AI services by Kahome Inc — access, operations and implementation." data-html-zh='Kahome Inc 旗下 AI 服务：<span class="nb">接入、运营、落地。</span>'>AI services by Kahome Inc — access, operations and implementation.</p>
+          <address>
+            <strong>Kahome Inc</strong>
+            <span>400 Spectrum Center Dr, Ste 1900</span><br>
+            <span>Irvine, CA 92618, USA</span><br>
+            <a href="tel:+19493003161" data-en="(949) 300-3161" data-zh="+1 (949) 300-3161">(949) 300-3161</a><br>
+            <a href="mailto:damon@thekahome.com">damon@thekahome.com</a>
+          </address>
+        </div>
+        <nav class="ft-col" aria-label="Footer" data-arialabel-en="Footer" data-arialabel-zh="页脚导航">
+          <p class="caps" data-en="Site" data-zh="站内导航">Site</p>
+          <ul>
+            <li><a href="/#services" data-en="Services" data-zh="服务">Services</a></li>
+            <li><a href="/#how" data-en="How it works" data-zh="合作流程">How it works</a></li>
+            <li><a href="/#why" data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</a></li>
+            <li><a href="/#careers" data-en="Careers" data-zh="加入我们">Careers</a></li>
+            <li><a href="/#contact" data-en="Contact" data-zh="联系我们">Contact</a></li>
+          </ul>
+        </nav>
+        <nav class="ft-col" aria-label="Company and legal" data-arialabel-en="Company and legal" data-arialabel-zh="公司与法律信息">
+          <p class="caps" data-en="Company" data-zh="公司">Company</p>
+          <ul>
+            <li><a href="/careers.html" data-en="Careers at K&amp;A" data-zh="了解在 K&amp;A 工作">Careers at K&amp;A</a></li>
+            <li><a href="/privacy.html" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</a></li>
+            <li><a href="/terms.html" data-en="Terms of Use" data-zh="使用条款">Terms of Use</a></li>
+            <li><a href="https://www.linkedin.com/company/kahomeinc" target="_blank" rel="noopener"><span>LinkedIn</span><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a></li>
+          </ul>
+        </nav>
       </div>
-      <nav class="footer-col" aria-label="Footer" data-arialabel-en="Footer" data-arialabel-zh="页脚导航">
-        <p class="mono" data-en="Site" data-zh="站内导航">Site</p>
-        <ul>
-          <li><a href="/#services" data-en="Services" data-zh="服务">Services</a></li>
-          <li><a href="/#how" data-en="How it works" data-zh="合作流程">How it works</a></li>
-          <li><a href="/#why" data-en="Why K&amp;A" data-zh="为什么选 K&amp;A">Why K&amp;A</a></li>
-          <li><a href="/#careers" data-en="Careers" data-zh="加入我们">Careers</a></li>
-          <li><a href="/#contact" data-en="Contact" data-zh="联系我们">Contact</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Company and legal" data-arialabel-en="Company and legal" data-arialabel-zh="公司与法律信息">
-        <p class="mono" data-en="Company" data-zh="公司">Company</p>
-        <ul>
-          <li><a href="/careers.html" data-en="All open roles" data-zh="全部在招职位">All open roles</a></li>
-          <li><a href="/privacy.html" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</a></li>
-          <li><a href="/terms.html" data-en="Terms of Use" data-zh="使用条款">Terms of Use</a></li>
-          <li><a href="https://www.linkedin.com/company/kahomeinc" target="_blank" rel="noopener"><span>LinkedIn</span><span class="vh" data-en="(opens in a new tab)" data-zh="（在新标签页打开）">(opens in a new tab)</span></a></li>
-        </ul>
-      </nav>
-    </div>
-    <p class="ventures-line"><span class="mono" data-en="Other ventures" data-zh="其他业务">Other ventures</span><span data-en="Kahome Inc also owns and operates consumer and commerce ventures:" data-zh="Kahome Inc 旗下另有自营的消费与电商类业务：">Kahome Inc also owns and operates consumer and commerce ventures:</span> <a href="https://thekzg.com" target="_blank" rel="noopener">KZG</a> · <a href="https://nowgowest.com" target="_blank" rel="noopener">GoWest</a> · <a href="https://onshelfs.com" target="_blank" rel="noopener">OnShelfs</a> · <a href="https://postpilotlab.com" target="_blank" rel="noopener">PostPilot</a></p>
-    <div class="footer-base">
-      <p data-en="© 2026 Kahome Inc. All rights reserved." data-zh="© 2026 Kahome Inc 版权所有。">© 2026 Kahome Inc. All rights reserved.</p>
-      <p class="disc" data-en="K&amp;A is a brand of Kahome Inc. Kahome Inc is an independent service provider and is not affiliated with, sponsored by or endorsed by any third-party platform, cloud provider or AI model provider; third-party product names are trademarks of their respective owners." data-zh="K&amp;A 是 Kahome Inc 旗下品牌。Kahome Inc 是独立的服务提供商，与任何第三方平台、云服务商或 AI 模型提供方均无隶属、赞助或背书关系；第三方产品名称均为其各自所有者的商标。">K&amp;A is a brand of Kahome Inc. Kahome Inc is an independent service provider and is not affiliated with, sponsored by or endorsed by any third-party platform, cloud provider or AI model provider; third-party product names are trademarks of their respective owners.</p>
+      <p class="ventures"><span class="caps" data-en="Other ventures" data-zh="其他业务">Other ventures</span> <span data-en="Kahome Inc also owns and operates consumer and commerce ventures:" data-zh="Kahome Inc 旗下另有自营的消费与电商类业务：">Kahome Inc also owns and operates consumer and commerce ventures:</span> <a href="https://nowgowest.com" target="_blank" rel="noopener">GoWest</a> · <a href="https://onshelfs.com" target="_blank" rel="noopener">OnShelfs</a> · <a href="https://postpilotlab.com" target="_blank" rel="noopener">PostPilot</a></p>
+      <div class="ft-base">
+        <p data-en="© 2026 Kahome Inc. All rights reserved." data-zh="© 2026 Kahome Inc 版权所有。">© 2026 Kahome Inc. All rights reserved.</p>
+        <p class="disc" data-en="K&amp;A is a brand of Kahome Inc. Kahome Inc is an independent service provider and is not affiliated with, sponsored by or endorsed by any third-party platform, cloud provider or AI model provider; third-party product names are trademarks of their respective owners." data-zh="K&amp;A 是 Kahome Inc 旗下品牌。Kahome Inc 是独立的服务提供商，与任何第三方平台、云服务商或 AI 模型提供方均无隶属、赞助或背书关系；第三方产品名称均为其各自所有者的商标。">K&amp;A is a brand of Kahome Inc. Kahome Inc is an independent service provider and is not affiliated with, sponsored by or endorsed by any third-party platform, cloud provider or AI model provider; third-party product names are trademarks of their respective owners.</p>
+      </div>
     </div>
   </div>
 </footer>
